@@ -6,4 +6,4 @@ rescue LoadError
   Bundler.require(:default, :development)
 end
 
-require 'docker/plugin'
+require 'communicator-docker/plugin'

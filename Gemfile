@@ -6,5 +6,5 @@ group :development do
 end
 
 group :plugins do
-  gem "CommunicatorDocker", path: "."
+  gem "communicator-docker", path: "."
 end

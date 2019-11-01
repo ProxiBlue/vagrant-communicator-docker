@@ -1,5 +1,5 @@
 module VagrantPlugins
-  module CommunicatorDocker
+  module Communicatordocker
       VERSION = '0.0.1'
   end
 end
