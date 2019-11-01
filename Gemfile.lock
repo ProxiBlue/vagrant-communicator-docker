@@ -27,7 +27,7 @@ GIT
 PATH
   remote: .
   specs:
-    CommunicatorDocker (0.0.1)
+    communicator-docker (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -116,7 +116,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  CommunicatorDocker!
+  communicator-docker!
   docker-api
   vagrant!
 

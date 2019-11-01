@@ -2,7 +2,7 @@ require File.expand_path('../lib/communicator-docker/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name            = 'communicator-docker'
-  s.version         = VagrantPlugins::communicatordocker::VERSION
+  s.version         = VagrantPlugins::CommunicatorDocker::VERSION
   s.date            = '2019-11-01'
   s.summary         = "Communicate with docker instance"
   s.description     = "Communicate with docker instance"

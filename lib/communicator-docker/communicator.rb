@@ -15,7 +15,7 @@ require 'vagrant/util/platform'
 require 'vagrant/util/retryable'
 
 module VagrantPlugins
-  module communicatordocker
+  module CommunicatorDocker
     # This class provides communication with Docker instances
     class Communicator < Vagrant.plugin("2", :communicator)
 
