@@ -6,7 +6,8 @@ This was created to facilitate host file management using a vagrant host file ma
 edit, and put back container hosts files. The assumption that vagrant SSH communicator makes, is that all containers
 have SSH - They do not.
 
-This communicator will make vagrant tasks that require SSH, to interact with the docker instances, as if SSH exists.
+This communicator will make vagrant tasks that require SSH, interact with the docker instances, as if SSH exists, by 
+using the Docker API.
 
 ## Installation
 
