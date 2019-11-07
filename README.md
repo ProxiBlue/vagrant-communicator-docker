@@ -1,16 +1,18 @@
 # Vagrant::Communicator::Docker
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/vagrant/communicator/docker`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a communicator plugin allowing vagrant to access docker instances as if they have SSH.
 
-TODO: Delete this and the text above, and describe your gem
+This was created to facilitate host file management using a vagrant host file manager plugin, which requires SSH to fetch, 
+edit, and put back container hosts files. The assumption that vagrant SSH communicator makes, is that all containers
+have SSH - They do not.
+
+This communicator will make vagrant tasks that require SSH, to interact with the docker instances, as if SSH exists.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Needs to be installed as a vagrant plugin
 
-```ruby
-gem 'communicatordocker'
-```
+* fetch the built package located here: 
 
 And then execute:
 
