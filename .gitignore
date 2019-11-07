@@ -8,3 +8,6 @@
 /vendor
 /vagrant-communicator-docker
 /bin
+/pkg
+Gemfile.lock
+
