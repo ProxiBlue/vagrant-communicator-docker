@@ -9,33 +9,47 @@ have SSH - They do not.
 This communicator will make vagrant tasks that require SSH, interact with the docker instances, as if SSH exists, by 
 using the Docker API.
 
+This has only been used in a Linux environment.
+
 ## Installation
 
 Needs to be installed as a vagrant plugin
 
-* fetch the built package located here: 
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install communicatordocker
+* fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/blob/master/pkg/communicator-docker-0.0.1.gem```
+* install using: ```vagrant plugin install communicator-docker-0.0.1.gem```
+* also install Docker API gem: ```vagrant plugin install docker-api```
 
 ## Usage
 
-TODO: Write usage instructions here
+* You need to set your vagrant instance to have SSH using ```has_ssh```
+* you need to set the communicator using ```vm.communicator = 'docker'```
 
-## Development
+Example vagrant definition:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```
+config.vm.define "database", primary: false do |database|
+        database.hostmanager.aliases = [ "database."+dev_domain ]
+        database.vm.network :private_network, ip: "172.20.0.208", subnet: "172.20.0.0/16"
+        database.vm.hostname = "database"
+        database.vm.communicator = 'docker'
+        database.vm.provider 'docker' do |d|
+            d.image = "mysql:5.7"
+            d.has_ssh = true
+            d.name = "database"
+            d.remains_running = true
+        end
+    end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Debug
+
+```vagrant halt database && vagrant up database --debug &>/tmp/debug.log``` then view the debug log.
+
+You will see debug entries with the string: ```DOCKER COMMUNICATOR``` 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vagrant-communicator-docker.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ProxiBlue/vagrant-communicator-docker.
 
 ## License
 
