@@ -41,6 +41,11 @@ config.vm.define "database", primary: false do |database|
     end
 ```
 
+## Limitations
+
+Communicates with a local docker service via linux sockets. That is all I need.
+Shoudl be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
+
 ## Debug
 
 ```vagrant halt database && vagrant up database --debug &>/tmp/debug.log``` then view the debug log.
