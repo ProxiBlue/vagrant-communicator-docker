@@ -23,7 +23,6 @@ Needs to be installed as a vagrant plugin
 
 * You need to set your vagrant instance to have SSH using ```has_ssh```
 * you need to set the communicator using ```vm.communicator = 'docker'```
-* you need to disable port forwarding for port 22 to host using ```vm.network :forwarded_port, guest: 22, host: 2222, disabled: true```
 
 Example vagrant definition:
 
@@ -31,7 +30,6 @@ Example vagrant definition:
 config.vm.define "database", primary: false do |database|
         database.hostmanager.aliases = [ "database."+dev_domain ]
         database.vm.network :private_network, ip: "172.20.0.208", subnet: "172.20.0.0/16"
-        database.vm.network :forwarded_port, guest: 22, host: 2222, disabled: true
         database.vm.hostname = "database"
         database.vm.communicator = 'docker'
         database.vm.provider 'docker' do |d|
