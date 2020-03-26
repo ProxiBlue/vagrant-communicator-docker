@@ -46,6 +46,11 @@ config.vm.define "database", primary: false do |database|
 Communicates with a local docker service via linux sockets. That is all I need.
 Shoudl be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
 
+## Problems with some docker images, failing with message that image is not running
+
+I have not managed to spend time on this, to pin it down, but some (random) docker images will fail if you set ```d.has_ssh = true``` - The only fix is to set that to false, which can stop other functions (example usage of a hostmanager plugin)
+
+
 ## Debug
 
 ```vagrant halt database && vagrant up database --debug &>/tmp/debug.log``` then view the debug log.
