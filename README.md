@@ -50,6 +50,13 @@ Shoudl be able to be extended to include a docker connection string to a tcp con
 
 I have not managed to spend time on this, to pin it down, but some (random) docker images will fail if you set ```d.has_ssh = true``` - The only fix is to set that to false, which can stop other functions (example usage of a hostmanager plugin)
 
+You can run a global trigger to overcome this, allowing hostmanagers to update after it was completed:
+
+```
+config.trigger.after :up do |trigger|
+   trigger.run = {inline: "bash -c 'vagrant hostmanager --provider docker'"}
+end
+```
 
 ## Debug
 
