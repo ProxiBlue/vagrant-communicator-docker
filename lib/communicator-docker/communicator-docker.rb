@@ -17,17 +17,23 @@ module VagrantPlugins
       end
 
       def initialize(machine)
-        @machine = machine
-        @machinename = machine.name.to_s
         @logger  = Log4r::Logger.new("vagrant::communication::docker")
+        @machine = machine
+        @machineID = machine.id
+        @logger.debug("MACHINE ID #{@machineID}")
       end
 
       def ready?
-        @logger.info(Docker.version)
-        @container = Docker::Container.get(@machinename)
-        @logger.info(@container.json)
-        # If we reached this point then we successfully connected
-        true
+        begin
+            @logger.info(Docker.version)
+            @container = Docker::Container.get(@machineID)
+            @logger.debug(@container.json)
+            # If we reached this point then we successfully connected
+            true
+        rescue
+            @logger.debug("DOCKER COMMUNICATOR - Could not make connection to #{@machineID}")
+            false
+        end
       end
 
       # wait_for_ready waits until the communicator is ready, blocking
@@ -100,9 +106,16 @@ module VagrantPlugins
       # @yieldparam [String] data Data for the given output.
       # @return [Integer] Exit code of the command.
       def execute(command, opts=nil)
-        result = @container.exec(['/bin/sh', '-c' , command], stderr: false)
-        realResult = result.first.join(' ').gsub(/[^[:print:]]/,'')
-        @logger.info(realResult)
+        begin
+            wait_for_ready(5)
+            result = @container.exec(['/bin/sh', '-c' , command], stderr: false)
+            realResult = result.first.join(' ').gsub(/[^[:print:]]/,'')
+            @logger.info(realResult)
+        rescue
+            @logger.info("Error attempting to write host file of container. Possible container is not running")
+        ensure
+            realResult = '';
+        end
         return realResult
       end
 
