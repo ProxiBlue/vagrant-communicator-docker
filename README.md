@@ -15,7 +15,7 @@ This has only been used in a Linux environment.
 
 Needs to be installed as a vagrant plugin
 
-* fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/blob/master/pkg/communicator-docker-1.0.0.gem```
+* fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/raw/master/communicator-docker-1.0.0.gem```
 * install using: ```vagrant plugin install communicator-docker-0.0.1.gem```
 * also install Docker API gem: ```vagrant plugin install docker-api```
 
@@ -45,6 +45,18 @@ config.vm.define "database", primary: false do |database|
 
 Communicates with a local docker service via linux sockets. That is all I need.
 Shoudl be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
+
+## Problems with some docker images, failing with message that image is not running
+
+I have not managed to spend time on this, to pin it down, but some (random) docker images will fail if you set ```d.has_ssh = true``` - The only fix is to set that to false, which can stop other functions (example usage of a hostmanager plugin)
+
+You can run a global trigger to overcome this, allowing hostmanagers to update after it was completed:
+
+```
+config.trigger.after :up do |trigger|
+   trigger.run = {inline: "bash -c 'vagrant hostmanager --provider docker'"}
+end
+```
 
 ## Debug
 
