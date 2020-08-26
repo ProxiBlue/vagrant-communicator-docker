@@ -136,11 +136,11 @@ module VagrantPlugins
       #
       # @see #execute
       def test(command, opts=nil)
-        @logger.debug("DOCKER COMMUNICATOR - TEST: #{command}")
-        result = execute(command, opts)
-        if result.nil? || result.empty?
-            return false
-        end
+        #@logger.debug("DOCKER COMMUNICATOR - TEST: #{command}")
+        #result = execute(command, opts)
+        #if result.nil? || result.empty?
+        #    return false
+        #end
         return true
       end
 
