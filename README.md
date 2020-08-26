@@ -16,7 +16,7 @@ This has only been used in a Linux environment.
 Needs to be installed as a vagrant plugin
 
 * fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/raw/master/communicator-docker-1.0.0.gem```
-* install using: ```vagrant plugin install communicator-docker-0.0.1.gem```
+* install using: ```vagrant plugin install communicator-docker-1.0.0.gem```
 * also install Docker API gem: ```vagrant plugin install docker-api```
 
 ## Usage
