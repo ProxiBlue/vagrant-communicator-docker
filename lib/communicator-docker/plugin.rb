@@ -1,3 +1,5 @@
+
+
 begin
   require "vagrant"
 rescue LoadError
@@ -16,6 +18,11 @@ module VagrantPlugins
       communicator("docker") do
         require File.expand_path("../communicator-docker", __FILE__)
         Communicator
+      end
+
+      config("communicator") do
+        require_relative "config"
+        Config
       end
     end
   end

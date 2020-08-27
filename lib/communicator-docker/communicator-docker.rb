@@ -21,6 +21,7 @@ module VagrantPlugins
         @machine = machine
         @machineID = machine.id
         @logger.debug("MACHINE ID #{@machineID}")
+        @logger.debug("MACHINE SHELL: #{@machine.config.communicator.bash_shell}")
       end
 
       def ready?
@@ -108,13 +109,12 @@ module VagrantPlugins
       def execute(command, opts=nil)
         begin
             wait_for_ready(5)
-            @logger.debug("DOCKER COMMUNICATOR - COMMAND - " + command )
-            result = @container.exec(['/bin/bash', '-c' , command], stderr: false)
+            result = @container.exec([@machine.config.communicator.bash_shell, '-c' , command], stderr: false)
             @logger.debug(result)
             @logger.debug(result.last)
             return result.last
         rescue
-            @logger.info("Error running command " + command + " on guest.")
+            @logger.info("Error running command " + command + " on guest using shell #{@machine.config.communicator.bash_shell}")
         end
         return 255
       end
