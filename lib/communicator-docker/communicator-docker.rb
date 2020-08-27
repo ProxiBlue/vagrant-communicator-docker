@@ -108,15 +108,15 @@ module VagrantPlugins
       def execute(command, opts=nil)
         begin
             wait_for_ready(5)
-            result = @container.exec(['/bin/sh', '-c' , command], stderr: false)
-            realResult = result.first.join(' ').gsub(/[^[:print:]]/,'')
-            @logger.info(realResult)
+            @logger.debug("DOCKER COMMUNICATOR - COMMAND - " + command )
+            result = @container.exec(['/bin/bash', '-c' , command], stderr: false)
+            @logger.debug(result)
+            @logger.debug(result.last)
+            return result.last
         rescue
-            @logger.info("Error attempting to write host file of container. Possible container is not running")
-        ensure
-            realResult = '';
+            @logger.info("Error running command " + command + " on guest.")
         end
-        return realResult
+        return 255
       end
 
       # Executes a command on the remote machine with administrative
@@ -136,12 +136,11 @@ module VagrantPlugins
       #
       # @see #execute
       def test(command, opts=nil)
-        #@logger.debug("DOCKER COMMUNICATOR - TEST: #{command}")
-        #result = execute(command, opts)
-        #if result.nil? || result.empty?
-        #    return false
-        #end
-        return true
+        result = execute(command, opts)
+        if result == 0
+            return true
+        end
+        return false
       end
 
        # Reset the communicator. For communicators which establish
