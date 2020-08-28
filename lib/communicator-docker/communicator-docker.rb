@@ -22,6 +22,7 @@ module VagrantPlugins
         @machineID = machine.id
         @logger.debug("MACHINE ID #{@machineID}")
         @logger.debug("MACHINE SHELL: #{@machine.config.communicator.bash_shell}")
+        @logger.debug("SHELL WAIT: #{@machine.config.communicator.bash_wait}")
       end
 
       def ready?
@@ -108,7 +109,7 @@ module VagrantPlugins
       # @return [Integer] Exit code of the command.
       def execute(command, opts=nil)
         begin
-            wait_for_ready(5)
+            wait_for_ready(@machine.config.communicator.bash_wait)
             result = @container.exec([@machine.config.communicator.bash_shell, '-c' , command], stderr: false)
             @logger.debug(result)
             @logger.debug(result.last)
