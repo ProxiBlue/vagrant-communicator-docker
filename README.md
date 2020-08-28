@@ -15,8 +15,8 @@ This has only been used in a Linux environment.
 
 Needs to be installed as a vagrant plugin
 
-* fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/raw/master/communicator-docker-1.0.2.gem```
-* install using: ```vagrant plugin install communicator-docker-1.0.2.gem```
+* fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/raw/master/communicator-docker-1.0.4.gem```
+* install using: ```vagrant plugin install communicator-docker-1.0.4.gem```
 * also install Docker API gem: ```vagrant plugin install docker-api```
 
 ## Usage
@@ -46,7 +46,26 @@ config.vm.define "database", primary: false do |database|
 Communicates with a local docker service via linux sockets. That is all I need.
 Shoudl be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
 
-## Problems with some docker images, failing with message that image is not running
+The default shell will be /bin/bash inside the docker container. You can override this using : ```vm.communicator.bash_shell = '/bin/sh';``` to use /bin/bash (or any other shell)
+
+If you get the error:
+
+```
+The guest operating system of the machine could not be detected!
+Vagrant requires this knowledge to perform specific tasks such
+as mounting shared folders and configuring networks. Please add
+the ability to detect this guest operating system to Vagrant
+by creating a plugin or reporting a bug.
+
+```
+
+you likely need to chnage the shell to /bin/sh
+
+## Solved issues?
+
+Not had this for some time, so I think solved due to ongoing changes.
+
+### Problems with some docker images, failing with message that image is not running
 
 I have not managed to spend time on this, to pin it down, but some (random) docker images will fail if you set ```d.has_ssh = true``` - The only fix is to set that to false, which can stop other functions (example usage of a hostmanager plugin)
 
