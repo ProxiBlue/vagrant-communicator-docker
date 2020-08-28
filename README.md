@@ -59,7 +59,7 @@ by creating a plugin or reporting a bug.
 
 ```
 
-you likely need to chnage the shell to /bin/sh
+you likely need to change the shell to /bin/sh
 
 ## Solved issues?
 
