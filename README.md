@@ -11,18 +11,22 @@ using the Docker API.
 
 This has only been used in a Linux environment.
 
+## Requirements
+
+* Docker API gem: ```vagrant plugin install docker-api```
+
 ## Installation
 
 Needs to be installed as a vagrant plugin
 
 * fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/raw/master/communicator-docker-1.0.4.gem```
 * install using: ```vagrant plugin install communicator-docker-1.0.4.gem```
-* also install Docker API gem: ```vagrant plugin install docker-api```
 
 ## Usage
 
 * You need to set your vagrant instance to have SSH using ```has_ssh```
-* you need to set the communicator using ```vm.communicator = 'docker'```
+* You need to set the communicator using ```vm.communicator = 'docker'```
+* You can set the shell to use with ```vm.communicator.bash_shell```
 
 Example vagrant definition:
 
