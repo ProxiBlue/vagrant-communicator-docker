@@ -27,6 +27,7 @@ Needs to be installed as a vagrant plugin
 * You need to set your vagrant instance to have SSH using ```has_ssh```
 * You need to set the communicator using ```vm.communicator = 'docker'```
 * You can set the shell to use with ```vm.communicator.bash_shell```
+* You can set the shell wait with ```vm.communicator.bash_wait```
 
 Example vagrant definition:
 
@@ -48,7 +49,7 @@ config.vm.define "database", primary: false do |database|
 ## Limitations
 
 Communicates with a local docker service via linux sockets. That is all I need.
-Shoudl be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
+Should be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
 
 The default shell will be /bin/bash inside the docker container. You can override this using : ```vm.communicator.bash_shell = '/bin/sh';``` to use /bin/bash (or any other shell)
 
@@ -63,7 +64,12 @@ by creating a plugin or reporting a bug.
 
 ```
 
-you likely need to change the shell to /bin/sh
+you likely need to change the shell to /bin/sh OR increase the shell_wait (default is 10)
+
+## shell_wait
+
+I have found some docker instances need a little extra time to initialise, before docker can send commands
+The default wait timeout is 10s. Increase in increments of 5 to see if you can overcome issue.
 
 ## Solved issues?
 
