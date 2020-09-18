@@ -15,6 +15,8 @@ This has only been used in a Linux environment.
 
 * Docker API gem: ```vagrant plugin install docker-api```
 
+If you get an error noted as: ```undefined method `copy' for...``` please use : ```vagrant plugin install docker-api --plugin-version=1.34.2```
+
 ## Installation
 
 Needs to be installed as a vagrant plugin
