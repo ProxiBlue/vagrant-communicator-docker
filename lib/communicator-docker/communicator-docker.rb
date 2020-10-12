@@ -70,7 +70,7 @@ module VagrantPlugins
         tempfile = "/tmp/#{SecureRandom.urlsafe_base64}.tar"
         @logger.debug("DOCKER COMMUNICATOR - tempfile - #{tempfile}")
         File.open(tempfile, "w") do |file|
-            @container.copy(from) do |chunk|
+            @container.archive_out(from) do |chunk|
                 file.write(chunk)
             end
         end
