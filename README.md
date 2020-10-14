@@ -21,8 +21,8 @@ If you get an error noted as: ```undefined method `copy' for...``` please use : 
 
 Needs to be installed as a vagrant plugin
 
-* fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/raw/master/communicator-docker-1.0.5.gem```
-* install using: ```vagrant plugin install communicator-docker-1.0.5.gem```
+* fetch the built gem package located here: ```https://github.com/ProxiBlue/vagrant-communicator-docker/raw/master/communicator-docker-1.0.6.gem```
+* install using: ```vagrant plugin install communicator-docker-1.0.6.gem```
 
 ## Usage
 
