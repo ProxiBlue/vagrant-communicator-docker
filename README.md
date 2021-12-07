@@ -57,7 +57,7 @@ config.vm.define "database", primary: false do |database|
 Communicates with a local docker service via linux sockets. That is all I need.
 Should be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
 
-The default shell will be /bin/bash inside the docker container. You can override this using : ```vm.communicator.bash_shell = '/bin/sh';``` to use /bin/bash (or any other shell)
+The default shell will be /bin/bash inside the docker container. You can override this using : ```vm.communicator.bash_shell = '/bin/sh';``` to use /bin/sh (or any other shell)
 
 If you get the error:
 
