@@ -1,2 +1,0 @@
-require 'communicator-docker/plugin'
-

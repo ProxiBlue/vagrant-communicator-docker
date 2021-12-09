@@ -27,11 +27,11 @@ vagrant plugin install vagrant-communicator-docker
 
 ### Manual install
 
-* fetch the built gem package located here: ```https://raw.githubusercontent.com/ProxiBlue/vagrant-communicator-docker/master/communicator-docker-1.0.6.gem```
-* install using: ```vagrant plugin install communicator-docker-1.0.6.gem```
+* fetch the built gem package located here: ```https://raw.githubusercontent.com/ProxiBlue/vagrant-communicator-docker/master/vagrant-communicator-docker-1.0.7.gem```
+* install using: ```vagrant plugin install vagrant-communicator-docker-1.0.7.gem```
 
 ```
-curl https://raw.githubusercontent.com/ProxiBlue/vagrant-communicator-docker/master/communicator-docker-1.0.6.gem > communicator-docker-1.0.6.gem
+curl https://raw.githubusercontent.com/ProxiBlue/vagrant-communicator-docker/master/vagrant-communicator-docker-1.0.7.gem > vagrant-communicator-docker-1.0.7.gem
 ```
 
 ## Usage

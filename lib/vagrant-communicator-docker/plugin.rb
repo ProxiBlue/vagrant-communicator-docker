@@ -7,7 +7,7 @@ rescue LoadError
 end
 
 module VagrantPlugins
-  module CommunicatorDocker
+  module VagrantCommunicatorDocker
     class Plugin < Vagrant.plugin("2")
       name "Docker Communicator"
       description <<-DESC
@@ -16,7 +16,7 @@ module VagrantPlugins
       DESC
 
       communicator("docker") do
-        require File.expand_path("../communicator-docker", __FILE__)
+        require File.expand_path("../vagrant-communicator-docker", __FILE__)
         Communicator
       end
 

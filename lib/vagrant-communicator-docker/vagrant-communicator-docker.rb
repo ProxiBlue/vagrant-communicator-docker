@@ -7,7 +7,7 @@ require 'log4r'
 require 'docker'
 
 module VagrantPlugins
-  module CommunicatorDocker
+  module VagrantCommunicatorDocker
     # This class provides communication with Docker instances
     class Communicator < Vagrant.plugin("2", :communicator)
 
