@@ -58,10 +58,17 @@ config.vm.define "database", primary: false do |database|
     end
 ```
 
-## Limitations
+## Communication over TCP with remote Docker
 
-Communicates with a local docker service via linux sockets. That is all I need.
-Should be able to be extended to include a docker connection string to a tcp connection, but I have no need for that as yet, so not implemented.
+By default the communicator connects with Docker over a local socket. You can override this, and allow remote Docker connection by setting an environment variable:
+
+```DOCKER_HOST=tcp://[DOCKER HOST]:[PORT]```
+
+example:
+
+```DOCKER_HOST=tcp://127.0.0.1:2375``` vagrant up
+
+## Limitations
 
 The default shell will be /bin/bash inside the docker container. You can override this using : ```vm.communicator.bash_shell = '/bin/sh';``` to use /bin/sh (or any other shell)
 
