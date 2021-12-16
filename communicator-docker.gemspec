@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.require_paths   = ['lib']
   s.homepage        = 'https://github.com/ProxiBlue/vagrant-communicator-docker'
   s.license         = 'MIT'
+  s.add_dependency 'docker-api', '>= 2.0.0'
 end
