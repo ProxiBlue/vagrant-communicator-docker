@@ -9,6 +9,9 @@ have SSH - They do not.
 This communicator will make vagrant tasks that require SSH, interact with the docker instances, as if SSH exists, by 
 using the Docker API.
 
+Shell scripts used during provisioning will also be executed, so will facilitate provisioning shel scripts as well (from 1.0.8).
+Please note that these will always run as root inside the docker instance.
+
 This has only been used in a Linux environment.
 
 ## Requirements
