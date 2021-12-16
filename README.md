@@ -66,7 +66,7 @@ example:
 
 ```DOCKER_HOST=tcp://127.0.0.1:2375``` vagrant up
 
-## Limitations
+## Shell
 
 The default shell will be /bin/bash inside the docker container. You can override this using : ```vm.communicator.bash_shell = '/bin/sh';``` to use /bin/sh (or any other shell)
 
