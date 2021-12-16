@@ -89,8 +89,11 @@ module VagrantPlugins
       # @param [String] to Path of where to save the file on the remote
       #   machine.
       def upload(from, to)
-        @logger.debug("DOCKER COMMUNICATOR - upload from: #{from} to: #{to}")
+        to_folder = File.dirname(to)
+        from_filename = File.basename(from)
+        @logger.debug("DOCKER COMMUNICATOR - upload from: #{from} to: #{to_folder} from_filename: #{from_filename}")
         @container.archive_in(from, File.dirname(to), overwrite: true)
+        execute("mv #{to_folder}/#{from_filename} #{to}")
       end
 
       # Execute a command on the remote machine. The exact semantics
@@ -109,8 +112,9 @@ module VagrantPlugins
       # @return [Integer] Exit code of the command.
       def execute(command, opts=nil)
         begin
+            @logger.debug("DOCKER COMMUNICATOR - EXECUTE: #{command}")
             wait_for_ready(@machine.config.communicator.bash_wait)
-            result = @container.exec([@machine.config.communicator.bash_shell, '-c' , command], stderr: false)
+            result = @container.exec([@machine.config.communicator.bash_shell, '-c' , "#{command}"], stderr: false)
             @logger.debug(result)
             @logger.debug(result.last)
             return result.last
@@ -127,7 +131,7 @@ module VagrantPlugins
       # @see #execute
       def sudo(command, opts=nil)
         @logger.debug("DOCKER COMMUNICATOR - EXECUTE WITH SUDO: #{command}")
-        execute(command, opts)
+        execute(command)
       end
 
       # Executes a command and returns true if the command succeeded,
@@ -137,7 +141,7 @@ module VagrantPlugins
       #
       # @see #execute
       def test(command, opts=nil)
-        result = execute(command, opts)
+        result = execute(command)
         if result == 0
             return true
         end
