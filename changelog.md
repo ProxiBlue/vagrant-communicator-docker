@@ -8,3 +8,4 @@
 * 1.0.6: Docker API update how command is run via API: https://github.com/swipely/docker-api/commit/425036dd85e41f8d4e6ea95ee6d001d76af9c7d7
 * 1.0.7: Change name to have 'vagrant-' prefix and push to rybygems
 * 1.0.8: Adjust so provisioning shell scripts get renamed to allow them to execute
+* 1.0.9: Add gemspec dependency
