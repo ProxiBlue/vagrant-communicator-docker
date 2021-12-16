@@ -9,13 +9,14 @@ have SSH - They do not.
 This communicator will make vagrant tasks that require SSH, interact with the docker instances, as if SSH exists, by 
 using the Docker API.
 
+Shell scripts used during provisioning will also be executed, so will facilitate provisioning shel scripts as well (from 1.0.8).
+Please note that these will always run as root inside the docker instance.
+
 This has only been used in a Linux environment.
 
 ## Requirements
 
-* Docker API gem: ```vagrant plugin install docker-api```
-
-If you get an error noted as: ```undefined method `copy' for...``` please use : ```vagrant plugin install docker-api --plugin-version=1.34.2```
+* Docker API gem: ```vagrant plugin install docker-api``` (must be version 2.0.0 or greater)
 
 ## Installation
 
