@@ -116,7 +116,11 @@ module VagrantPlugins
             wait_for_ready(@machine.config.communicator.bash_wait)
             result = @container.exec([@machine.config.communicator.bash_shell, '-c' , "#{command}"], stderr: false)
             @logger.debug(result)
-            @logger.debug(result.last)
+            if result.first.length > 0
+                result.first.first.each_line do |line|
+                    yield :stdout, line if block_given?
+                end
+            end
             return result.last
         rescue
             @logger.info("Error running command " + command + " on guest using shell #{@machine.config.communicator.bash_shell}")
