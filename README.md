@@ -16,7 +16,7 @@ This has only been used in a Linux environment.
 
 ## Requirements
 
-* Docker API gem: ```vagrant plugin install docker-api``` (must be version 2.0.0 or greater)
+* Docker API gem, which will install as a dependency.
 
 ## Installation
 
@@ -28,12 +28,9 @@ vagrant plugin install vagrant-communicator-docker
 
 ### Manual install
 
-* fetch the built gem package located here: ```https://raw.githubusercontent.com/ProxiBlue/vagrant-communicator-docker/master/vagrant-communicator-docker-1.0.7.gem```
-* install using: ```vagrant plugin install vagrant-communicator-docker-1.0.7.gem```
+* install using: ```vagrant plugin install vagrant-communicator-docker-[version].gem```
+* install dependency ```vagrant plugin install docker-api``` (must be version 2.0.0 or greater)
 
-```
-curl https://raw.githubusercontent.com/ProxiBlue/vagrant-communicator-docker/master/vagrant-communicator-docker-1.0.7.gem > vagrant-communicator-docker-1.0.7.gem
-```
 
 ## Usage
 
@@ -69,7 +66,7 @@ example:
 
 ```DOCKER_HOST=tcp://127.0.0.1:2375``` vagrant up
 
-## Limitations
+## Shell
 
 The default shell will be /bin/bash inside the docker container. You can override this using : ```vm.communicator.bash_shell = '/bin/sh';``` to use /bin/sh (or any other shell)
 
