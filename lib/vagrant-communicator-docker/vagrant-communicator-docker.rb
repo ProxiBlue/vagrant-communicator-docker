@@ -31,6 +31,7 @@ module VagrantPlugins
             @container = Docker::Container.get(@machineID)
             @logger.debug(@container.json)
             # If we reached this point then we successfully connected
+            @logger.debug("DOCKER COMMUNICATOR connected to #{@machineID}")
             true
         rescue
             @logger.debug("DOCKER COMMUNICATOR - Could not make connection to #{@machineID}")
@@ -56,6 +57,7 @@ module VagrantPlugins
           end
         rescue Timeout::Error
           # We timed out, we failed.
+          @logger.debug("DOCKER COMMUNICATOR - Timeout to ready")
         end
 
         return false
@@ -114,7 +116,8 @@ module VagrantPlugins
         begin
             @logger.debug("DOCKER COMMUNICATOR - EXECUTE: #{command}")
             wait_for_ready(@machine.config.communicator.bash_wait)
-            result = @container.exec([@machine.config.communicator.bash_shell, '-c' , "#{command}"], stderr: false)
+            @logger.debug("DOCKER COMMUNICATOR - Ready to EXECUTE")
+            result = @container.exec([@machine.config.communicator.bash_shell, '-c' , command], tty: true)
             @logger.debug(result)
             if result.first.length > 0
                 result.first.first.each_line do |line|
@@ -122,8 +125,9 @@ module VagrantPlugins
                 end
             end
             return result.last
-        rescue
-            @logger.info("Error running command " + command + " on guest using shell #{@machine.config.communicator.bash_shell}")
+        rescue => e
+            @logger.info("DOCKER COMMUNICATOR: Error running command " + command + " on guest using shell #{@machine.config.communicator.bash_shell}")
+            @logger.error ([e.message]+e.backtrace).join($/)
         end
         return 255
       end
@@ -135,7 +139,7 @@ module VagrantPlugins
       # @see #execute
       def sudo(command, opts=nil)
         @logger.debug("DOCKER COMMUNICATOR - EXECUTE WITH SUDO: #{command}")
-        execute(command)
+        execute(command, opts)
       end
 
       # Executes a command and returns true if the command succeeded,

@@ -86,6 +86,24 @@ by creating a plugin or reporting a bug.
 ```
 
 you likely need to change the shell to /bin/sh OR increase the shell_wait (default is 10)
+OR the docker image in use (example: debian:bullseye) is not staying active after created.
+You can force that by passing ```-t``` as a docker create arg in the vagrant setup
+
+```
+Vagrant.configure("2") do |config|
+    config.vm.define "test-case", primary: false do |d|
+        d.vm.communicator = 'docker'
+        d.vm.provider 'docker' do |box|
+            box.image = "debian:bullseye"
+            box.has_ssh = true
+            box.remains_running = true
+            box.create_args = ["-t"]
+        end
+    end
+end
+```
+
+it would seem ```box.remains_running = true``` don't work on all docker images !
 
 ## shell_wait
 

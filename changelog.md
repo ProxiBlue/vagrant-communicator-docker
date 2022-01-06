@@ -10,3 +10,4 @@
 * 1.0.8: Adjust so provisioning shell scripts get renamed to allow them to execute
 * 1.0.9: Add gemspec dependency
 * 1.1.10: Add stdout response from scripts running
+* 1.1.11: SOme more debug log messages
