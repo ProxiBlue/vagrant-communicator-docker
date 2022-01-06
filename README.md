@@ -16,7 +16,11 @@ This has only been used in a Linux environment.
 
 ## Requirements
 
-* Docker API gem, which will install as a dependency.
+* Docker API gem. Although set as a dependency for the communicator, you *must* install this as a vagrant plugin, else it will not be located to be used by vagrant.
+
+```
+vagrant plugin install docker-api
+```
 
 ## Installation
 
