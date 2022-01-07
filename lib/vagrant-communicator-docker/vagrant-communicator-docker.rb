@@ -68,6 +68,7 @@ module VagrantPlugins
       # @param [String] from Path of the file on the remote machine.
       # @param [String] to Path of where to save the file locally.
       def download(from, to)
+        wait_for_ready(@machine.config.communicator.bash_wait)
         @logger.debug("DOCKER COMMUNICATOR - DOWNLOAD from: #{from} to: #{to}")
         tempfile = "/tmp/#{SecureRandom.urlsafe_base64}.tar"
         @logger.debug("DOCKER COMMUNICATOR - tempfile - #{tempfile}")
@@ -91,6 +92,7 @@ module VagrantPlugins
       # @param [String] to Path of where to save the file on the remote
       #   machine.
       def upload(from, to)
+        wait_for_ready(@machine.config.communicator.bash_wait)
         to_folder = File.dirname(to)
         from_filename = File.basename(from)
         @logger.debug("DOCKER COMMUNICATOR - upload from: #{from} to: #{to_folder} from_filename: #{from_filename}")
