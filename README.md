@@ -51,7 +51,7 @@ config.vm.define "database", primary: false do |database|
         database.vm.network :private_network, ip: "172.20.0.208", subnet: "172.20.0.0/16"
         database.vm.hostname = "database"
         database.communicator.bash_shell = '/bin/sh'
-        database.communicator.bash_wait = "30"
+        database.communicator.bash_wait = 30
         database.vm.communicator = 'docker'
         database.vm.provider 'docker' do |d|
             d.image = "mysql:5.7"
